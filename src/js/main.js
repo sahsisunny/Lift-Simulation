@@ -53,8 +53,9 @@ function clickHandler(e) {
           addedFloor += `
           <div id="floor-area">
                <div class="buttons">
-                    ${i === 0 ? `<button class="btn move" id="down" btn-floor = "${i}">🔽</button>` : ``}
-                    ${i !== 0 ? `<button class="btn move" id="up" btn-floor = "${i}">🔼</button><button class="btn move" id="down" btn-floor = "${i}">🔽</button>` : ``}
+                    ${i === floor - 1 ? `<button class="btn move" id="up" btn-floor = "${i}">🔽</button>` : ``}
+                    ${i === 0 ? `<button class="btn move" id="down" btn-floor = "${i}">🔼</button>` : ``}
+                    ${i !== floor - 1 && i !== 0 ? `<button class="btn move" id="up" btn-floor = "${i}">🔼</button><button class="btn move" id="down" btn-floor = "${i}">🔽</button>` : ``}
                </div>
                <div class="floor" floor-number = "${i + 1}" >${i === 0 ? generateLift() : ''}</div>
                <div class="floor-level"><p>${i}</p></div>
@@ -71,24 +72,24 @@ function clickHandler(e) {
                          let rLift = lift[freeLift[0]];                                        // get the free lift
                          let liftNumber = rLift.getAttribute('lift-position');                 // get the lift number
                          let gate = document.getElementsByClassName('gate')[freeLift[0]];      // get the gate
-                         function MoveLiftAndOthers() {                                        // function for move the lift and others
-                              rLift.style.transform = `translateY(${((floorPositioNumber) * -100) - 2}%)`;    // move the lift to the floor
-                              rLift.style.transition = `transform ${floorPositioNumber * n}s ease-in-out`;    // set the transition time
-                              e.target.classList.add('active');                                     // add active class to the button
-                              setTimeout(() => {                                                    // open the gate after 5 seconds
-                                   gate.classList.add('gate-animate');                              // add the gate animation
-                              }, `${(floorPositioNumber * n) * 1000}`);
-                              setTimeout(() => {                                                    // close the gate after 10 seconds
-                                   gate.classList.remove('gate-animate');                           // remove the gate animation
-                                   e.target.classList.remove('active');                             // remove the active class from the button
-                              }, `${((floorPositioNumber * n) * 1000) + 5000}`);
-                              freeLift.shift(busyLift.push(freeLift[0]));                           // remove the lift from the free lift array and add the lift to the busy lift array
-                              setTimeout(() => {                                            // add the lift to the free lift array after 15 seconds
-                                   freeLift.push(busyLift.shift());                            // remove the lift from the busy lift array and add the lift to the free lift array
-                                   freeLift.sort();                                            // sort the free lift array
-                              }, `${((floorPositioNumber * n) * 1000) + 6000}`);
-                         }
-                         MoveLiftAndOthers();
+                         // function MoveLiftAndOthers() {                                        // function for move the lift and others
+                         rLift.style.transform = `translateY(${((floorPositioNumber) * -100) - 2}%)`;    // move the lift to the floor
+                         rLift.style.transition = `transform ${floorPositioNumber * n}s ease-in-out`;    // set the transition time
+                         e.target.classList.add('active');                                     // add active class to the button
+                         setTimeout(() => {                                                    // open the gate after 5 seconds
+                              gate.classList.add('gate-animate');                              // add the gate animation
+                         }, `${(floorPositioNumber * n) * 1000}`);
+                         setTimeout(() => {                                                    // close the gate after 10 seconds
+                              gate.classList.remove('gate-animate');                           // remove the gate animation
+                              e.target.classList.remove('active');                             // remove the active class from the button
+                         }, `${((floorPositioNumber * n) * 1000) + 5000}`);
+                         freeLift.shift(busyLift.push(freeLift[0]));                           // remove the lift from the free lift array and add the lift to the busy lift array
+                         setTimeout(() => {                                            // add the lift to the free lift array after 15 seconds
+                              freeLift.push(busyLift.shift());                            // remove the lift from the busy lift array and add the lift to the free lift array
+                              freeLift.sort();                                            // sort the free lift array
+                         }, `${((floorPositioNumber * n) * 1000) + 6000}`);
+                         // }
+                         // MoveLiftAndOthers();
 
                          // Print Data in the console
                          console.log(`Lift ${Number(liftNumber) + 1} is moving to floor ${floorPositioNumber} when ${e.target.id} button is clicked and the gate is opening after ${(floorPositioNumber * n2)} seconds and closing after ${(floorPositioNumber * n2) + 5} seconds.`);
