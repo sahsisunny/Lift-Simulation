@@ -103,7 +103,7 @@ function clickHandler() {
                if (moveBTN[i].id === 'up')
                     upLift(1, 1);
                else if (moveBTN[i].id === 'down')
-                    upLift(i/2, 2);
+                    upLift(i / 2, 2);
           });
      }
 }
