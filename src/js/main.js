@@ -6,6 +6,9 @@ const outputArea = document.getElementsByClassName('output');    // Get the outp
 let floor;                       // Declare the floor variable to store the floor number
 let lift;                     // Declare the lift variable to store the lift number
 
+let freeLift = [];
+let busyLift = [];
+
 // Add event listener to store the floor number in the floor variable
 floorInput.addEventListener('change', (e) => {
      floor = Number(e.target.value);
@@ -30,11 +33,16 @@ LiftInput.addEventListener('change', (e) => {
           lift = 5;
           LiftInput.value = lift;
      }
+     // Add freelift array
+     for (let i = 0; i < lift; i++) {
+          freeLift.push(i);
+     }
+     console.log(`Free lift: ${freeLift}`);
 });
 
 
-let freeLift = [];
-let busyLift = [];
+
+
 
 // function for generate lift
 function generateLift() {
@@ -55,7 +63,7 @@ function clickHandler() {
           addedFloor += `
           <div id="floor-area">
                <div class="buttons">
-                    ${i === 0 ? `<button class="btn move" id="up" btn-floor = "${i}">🔼</button>` : ``}
+                    ${i === 0 ? `<button class="btn move" id="down" btn-floor = "${i}">🔽</button>` : ``}
                     ${i !== 0 ? `<button class="btn move" id="up" btn-floor = "${i}">🔼</button><button class="btn move" id="down" btn-floor = "${i}">🔽</button>` : ``}
                </div>
                <div class="floor" floor-number = "${i}" >
@@ -69,17 +77,11 @@ function clickHandler() {
      }
      outputArea[0].innerHTML = addedFloor;
 
-     // Store free lift in an array
-     for (let i = 0; i < lift; i++) {
-          freeLift.push(i);
-     }
-
      // Add event listener to the move button
      const moveBTN = document.getElementsByClassName('move');
      for (let i = 0; i < moveBTN.length; i++) {
           moveBTN[i].addEventListener('click', (e) => {
                // console.log(`You have clicked the ${e.target.id} button of floor ${e.target.getAttribute('btn-floor')}`);
-               console.log(`Free lift: ${freeLift}`);
                console.log(`Busy lift: ${busyLift}`);
 
                if (moveBTN[i].id === 'up') {
@@ -89,39 +91,42 @@ function clickHandler() {
                          console.log(`Button ID: ${e.target.id} and Button at floor: ${floorPositioNumber}`);
 
                          // get one random lift from the free lift array
-                         let randomLift = freeLift[Math.floor(Math.random() * freeLift.length)];
-                         console.log(`Random lift: ${randomLift}`);
+                         // let freeLift[0] = freeLift[Math.floor(Math.random() * freeLift.length)];
+
+                         // get the first lift from the free lift array
 
                          // get the lift
                          let lift = document.getElementsByClassName('lift');
-                         let rLift = lift[randomLift];
-                         console.log(rLift);
+                         let rLift = lift[freeLift[0]];
 
                          // get lift number
                          let liftNumber = rLift.getAttribute('lift-position');
                          console.log(`Lift number: ${liftNumber}`);
 
                          // get the gate
-                         let gate = document.getElementsByClassName('gate')[randomLift];
-                         console.log(gate);
+                         let gate = document.getElementsByClassName('gate')[freeLift[0]];
                          gate.classList.add('gate-animate');
-
 
                          // // move the lift
                          setTimeout(() => {
-                              rLift.style.transform = `translateY(${(floorPositioNumber) * -118}px)`;
+                              rLift.style.transform = `translateY(${((floorPositioNumber) * -100) - 5}%)`;
                               rLift.style.transition = `transform ${floorPositioNumber}s ease-in-out`;
                          }, 5000);
 
+                         // // open the gate
+                         setTimeout(() => {
+                              gate.classList.remove('gate-animate');
+                         }, `${(floorPositioNumber * 1000) + 5000}`);
+
                          // remove the lift from the free lift array and add it to the busy lift array
-                         freeLift.shift(busyLift.push(randomLift));
+                         freeLift.shift(busyLift.push(freeLift[0]));
                          console.log(`Free lift: ${freeLift}`);
                          console.log(`Busy lift: ${busyLift}`);
 
                          // add the lift to the free lift array after 5 seconds
                          setTimeout(() => {
                               freeLift.push(busyLift.shift());
-                         }, `${1000}`);
+                         }, `${6000}`);
                     } else {
                          alert('No lift is free right now. Please wait for a while.');
                     }
@@ -132,12 +137,11 @@ function clickHandler() {
                          console.log(`Button ID: ${e.target.id} and Button at floor: ${floorPositioNumber}`);
 
                          // get one random lift from the free lift array
-                         let randomLift = freeLift[Math.floor(Math.random() * freeLift.length)];
-                         console.log(`Random lift: ${randomLift}`);
+                         console.log(`Random lift: ${freeLift[0]}`);
 
                          // get the lift
                          let lift = document.getElementsByClassName('lift');
-                         let rLift = lift[randomLift];
+                         let rLift = lift[freeLift[0]];
                          console.log(rLift);
 
                          // get lift number
@@ -145,19 +149,18 @@ function clickHandler() {
                          console.log(`Lift number: ${liftNumber}`);
 
                          // get the gate
-                         let gate = document.getElementsByClassName('gate')[randomLift];
+                         let gate = document.getElementsByClassName('gate')[freeLift[0]];
                          console.log(gate);
                          gate.classList.add('gate-animate');
 
-
                          // // move the lift
                          setTimeout(() => {
-                              rLift.style.transform = `translateY(${(floorPositioNumber) * -118}px)`;
+                              rLift.style.transform = `translateY(${((floorPositioNumber) * -100) + 10}%)`;
                               rLift.style.transition = `transform ${floorPositioNumber}s ease-in-out`;
                          }, 5000);
 
                          // remove the lift from the free lift array and add it to the busy lift array
-                         freeLift.shift(busyLift.push(randomLift));
+                         freeLift.shift(busyLift.push(freeLift[0]));
                          console.log(`Free lift: ${freeLift}`);
                          console.log(`Busy lift: ${busyLift}`);
 
@@ -173,8 +176,8 @@ function clickHandler() {
 
 
      }
-}
 
+}
 
 
 
