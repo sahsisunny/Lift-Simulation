@@ -74,7 +74,7 @@ h1 {
 }
 
 .input-form {
-     display: none;
+     /* display: none; */
 }
 
 
@@ -135,10 +135,13 @@ h1 {
 .gate {
      width: 100%;
      height: 90%;
-     animation: shutter 5s ease-in;
      display: flex;
      justify-content: center;
      align-items: center;
+}
+
+.gate-animate {
+     animation: shutter 5s ease-in;
 }
 
 hr {
