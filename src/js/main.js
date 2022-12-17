@@ -1,112 +1,149 @@
-const submitBTN = document.getElementById('submit-button');
-const floorInput = document.getElementById('floor-input');
-const liftInput = document.getElementById('lift-input');
-const outputArea = document.getElementsByClassName('output');
+// Input
+const floorInput = document.getElementById('floor');
+const liftInput = document.getElementById('lift');
+const submitBTN = document.getElementById('submit');
 
-let floor;
-let lift;
+// area
+const inputArea = document.getElementsByClassName('input-area');
+const outputArea = document.getElementsByClassName('output-area');
+const liftArea = document.getElementsByClassName('building');
 
+// for Action Button
+const backBTN = document.getElementById('back');
+const resetBTN = document.getElementById('reset');
+
+// data value
+let floor = 0;
+let lift = 0;
 let freeLift = [];
 let busyLift = [];
+let prevLiftPosition = 1;
 
-// Add event listener to store the floor number in the floor variable
 floorInput.addEventListener('change', (e) => {
-     floor = Number(e.target.value);
-     if (floor <= 0 || floor > 10) {
-          alert(`You have entered ${floor} as your floor. Please enter a number between 0 and 10. Your floor has been set to 1.`);
+     floor = e.target.value;
+     if (floor < 1 || floor > 10) {
+          console.log(`Please enter a valid floor number`);
+          floorInput.value = '';
           floor = 1;
-          floorInput.value = floor;
+          floorInput.focus();
      }
 });
 
-// Add event listener to store the lift number in the lift variable
 liftInput.addEventListener('change', (e) => {
-     lift = Number(e.target.value);
-     let screenSize = window.innerWidth;
-     if (lift <= 0 || lift > 15) {
-          alert(`You have entered ${lift} as your lift. Please enter a number between 1 and 15. Your lift has been set to 1.`);
+     lift = e.target.value;
+     if (lift < 1 || lift > 10) {
+          console.log(`Please enter a valid lift number`);
+          liftInput.value = '';
           lift = 1;
-          liftInput.value = lift;
-     } else if (screenSize <= 1100 && lift > 5) {
-          alert(`You have entered ${lift} as your lift. Please enter a number between 1 and 5. Because you have not enough space in your screen, your lift has been set to 5.`);
-          lift = 5;
-          liftInput.value = lift;
+          liftInput.focus();
      }
-     // Add free lift to array
      for (let i = 0; i < lift; i++) {
           freeLift.push(i);
      }
 });
 
-// function for generate lift
+// function to generate floor
+function generateBuilding(floor, lift) {
+     let floorHTML = '';
+     for (let i = floor - 1; i >= 0; i--) {
+          floorHTML +=
+               `
+          <div class="floor" id="floor${i}">
+               <div class="lift-buttons">
+               ${i === floor - 1 ? `<button id="down" class="lift-button move" data-btn-floor="${i}">⬇️</button>` : ''}
+               ${i === 0 ? `<button id="up" class="lift-button move" data-btn-floor="${i}">⬆️</button>` : ''}
+               ${i !== floor - 1 && i !== 0 ? `
+               <button id="up" class="lift-button move" data-btn-floor="${i}">⬆️</button>
+               <button id="down" class="lift-button move" data-btn-floor="${i}">⬇️</button>
+               ` : ''}
+               </div>
+               <div class="lift-area">
+                    ${i === 0 ? generateLift(lift) : ''}
+               </div>
+          </div>
+          `;
+     }
+     liftArea[0].innerHTML = floorHTML;
+}
+
+// function to generate lift
 function generateLift() {
      let addedLift = '';
      for (let i = 0; i < lift; i++) {
-          addedLift += `<div class="lift" lift-position="${i}" ><div class="gate"></div></div>`;
+          addedLift += `
+          <div class = "lift" id="lift${i}" data-current-floor="0" data-is-moving="false">
+               <div class="lift-door door-left"></div>
+               <div class="lift-door door-right"></div>
+          </div>`;
      }
      return addedLift;
 }
 
-// function for clickHandler 
-function clickHandler(e) {
+// Submit Click handler
+submitBTN.addEventListener('click', (e) => {
      e.preventDefault();
-     let addedFloor = ''
-     for (let i = floor - 1; i >= 0; i--)
-          addedFloor += `
-          <div id="floor-area">
-               <div class="buttons">
-                    ${i === floor - 1 ? `<button class="btn move" id="up" btn-floor = "${i}">🔽</button>` : ``}
-                    ${i === 0 ? `<button class="btn move" id="down" btn-floor = "${i}">🔼</button>` : ``}
-                    ${i !== floor - 1 && i !== 0 ? `<button class="btn move" id="up" btn-floor = "${i}">🔼</button><button class="btn move" id="down" btn-floor = "${i}">🔽</button>` : ``}
-               </div>
-               <div class="floor" floor-number = "${i + 1}" >${i === 0 ? generateLift() : ''}</div>
-               <div class="floor-level"><p>
-               ${i === 0 ? `G` : ``}
-               ${i > 0 && i ? `${i}` : ``}
-               </p></div>
-          </div>`;
+     inputArea[0].classList.add('hide');
+     outputArea[0].classList.remove('hide');
+     generateBuilding(floor, lift);
 
-     outputArea[0].innerHTML = addedFloor;                                                     // add the floor to the output area
-     const moveBTN = document.getElementsByClassName('move');                                  // get the move button
-     for (let i = 0; i < moveBTN.length; i++) {                                                // add event listener to the move button
-          moveBTN[i].addEventListener('click', (e) => {                                        // add event listener to the move button
-               function upLift(n, n2) {                                                        // function for move the lift up
-                    if (freeLift.length > 0) {                                                 // check if there is a free lift
-                         const floorPositioNumber = e.target.getAttribute('btn-floor');        // get the floor number
+     // Event Listener for Lift Button
+     const moveBTN = document.getElementsByClassName('move');
+     for (let i = 0; i < moveBTN.length; i++) {
+          moveBTN[i].addEventListener('click', (e) => {
+               // Move Lift Function
+               function moveLift(e) {
+                    e.preventDefault();
+                    const floorDiv = e.target.parentNode.parentNode;
+                    var [x, requestedFloorNo] = floorDiv.id.split("floor");
+                    for (let i = 0; i < lift; i++) {
+                         const lift = document.getElementById(`lift${freeLift[0]}`);
+                         if (lift.dataset.isMoving === "false") {
+                              let floorCalled = Math.abs(requestedFloorNo - lift.dataset.currentFloor);
+                              let travelDuration = floorCalled * 2;
+                              console.log(`Lift come from ${lift.dataset.currentFloor} to ${requestedFloorNo} in ${travelDuration} seconds`);
 
-                         let lift = document.getElementsByClassName('lift');                   // get the lift
-                         let rLift = lift[freeLift[0]];                                        // get the free lift
-                         let liftNumber = rLift.getAttribute('lift-position');                 // get the lift number
-                         let gate = document.getElementsByClassName('gate')[freeLift[0]];      // get the gate
-                         rLift.style.transform = `translateY(${((floorPositioNumber) * -100) - 2}%)`;    // move the lift to the floor
-                         rLift.style.transition = `transform ${floorPositioNumber * n}s ease-in-out`;    // set the transition time
-                         e.target.classList.add('active');                                     // add active class to the button
-                         setTimeout(() => {                                                    // open the gate after 5 seconds
-                              gate.classList.add('gate-animate');                              // add the gate animation
-                         }, `${(floorPositioNumber * n) * 1000}`);
-                         setTimeout(() => {                                                    // close the gate after 10 seconds
-                              gate.classList.remove('gate-animate');                           // remove the gate animation
-                              e.target.classList.remove('active');                             // remove the active class from the button
-                         }, `${((floorPositioNumber * n) * 1000) + 5000}`);
-                         freeLift.shift(busyLift.push(freeLift[0]));                           // remove the lift from the free lift array and add the lift to the busy lift array
-                         setTimeout(() => {                                            // add the lift to the free lift array after 15 seconds
-                              freeLift.push(busyLift.shift());                            // remove the lift from the busy lift array and add the lift to the free lift array
-                              freeLift.sort();                                            // sort the free lift array
-                         }, `${((floorPositioNumber * n) * 1000) + 6000}`);
+                              // Lift transform
+                              lift.style.transform = `translateY(${((requestedFloorNo) * -128)}px)`;
+                              lift.style.transition = `transform ${travelDuration}s ease-in-out`;
+                              lift.dataset.isMoving = true;
 
-                         // Print Data in the console
-                         console.log(`Lift ${Number(liftNumber) + 1} is moving to floor ${floorPositioNumber} when ${e.target.id} button is clicked and the gate is opening after ${(floorPositioNumber * n2)} seconds and closing after ${(floorPositioNumber * n2) + 5} seconds.`);
-                         console.log(`Free Lift: ${freeLift.length} and Busy Lift: ${busyLift.length}`);
-                    } else {
-                         alert('No lift is free right now. Please wait for a while.');
+
+                              // Lift Gate
+                              let lGate = document.getElementsByClassName('door-left')[freeLift[0]];
+                              let rGate = document.getElementsByClassName('door-right')[freeLift[0]];
+                              setTimeout(() => {
+                                   lGate.classList.add("animation");
+                                   rGate.classList.add("animation");
+                                   console.log("Door Open");
+                              }, `${(travelDuration) * 1000}`);
+
+                              setTimeout(() => {
+                                   lGate.classList.remove("animation");
+                                   rGate.classList.remove("animation");
+                                   console.log("Door close");
+                              }, `${(travelDuration) * 1000 + 2600}`);
+
+                              setTimeout(() => {
+                                   lift.dataset.isMoving = false; // after open + close animations
+                              }, 2500);
+
+
+                              freeLift.shift(busyLift.push(freeLift[0]));
+                              setTimeout(() => {
+                                   freeLift.push(busyLift.shift());
+                                   freeLift.sort();
+                              }, `${(travelDuration) * 1000 + 2600}`);
+                              lift.setAttribute("data-current-floor", requestedFloorNo);
+                              break;
+                         }
                     }
-               }
-               if (moveBTN[i].id === 'up') {
-                    upLift(1, 1);
-               } else if (moveBTN[i].id === 'down') {
-                    upLift(i / 2, 2);
-               }
+                    // 
+               };
+               moveLift(e);
+
+
           });
      }
-}
-submitBTN.addEventListener('click', (e) => clickHandler(e));                    // add event listener to the submit button
+
+
+});

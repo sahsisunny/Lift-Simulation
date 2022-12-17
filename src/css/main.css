@@ -1,116 +1,159 @@
-/* import roboto google font */
 * {
      margin: 0;
      padding: 0;
      box-sizing: border-box;
 }
 
-body {
-     font-family: 'Roboto', sans-serif;
-     font-size: 62.5%;
-}
+
 
 main {
      width: 100%;
      height: 100vh;
      display: flex;
+     justify-content: center;
      align-items: center;
+     background-color: #f1f1f1;
      flex-direction: column;
 }
 
 h1 {
-     font-size: 2.5rem;
-     margin-bottom: 2rem;
+     font-size: 3rem;
+     font-weight: 500;
+     color: #333;
+     margin-bottom: 20px;
 }
 
-.input-form div {
-     width: 50%;
+.input-area {
+     width: 100%;
+     max-width: 500px;
+     max-height: 500px;
+     border-radius: 10px;
+     padding: 20px;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+}
+
+.input-group {
+     width: 100%;
      display: flex;
      justify-content: center;
      align-items: center;
-     margin-bottom: 1rem;
-}
-
-.input-form div {
-     width: 100%;
-}
-
-.input-form div label {
-     font-size: 1.5rem;
-     color: black;
-     margin-bottom: 0.5rem;
-     width: 35%;
-}
-
-.input-form div input {
-     width: 100%;
-     height: 2rem;
-     border: none;
-     border-radius: 5px;
-     padding: 0.5rem;
-     font-size: 1rem;
-     box-shadow: 0 0 5px black;
-}
-
-.input-form div input:focus {
-     outline: none;
-}
-
-.input-form button {
-     width: 100%;
-     border: none;
-     border-radius: 5px;
-     padding: 0.5rem;
-     font-size: 1rem;
-     cursor: pointer;
-     box-shadow: 0 0 5px black;
-     text-transform: uppercase;
-     color: black;
-}
-
-.input-form button:hover {
-     color: white;
-     background-color: black;
-}
-
-.output {
-     width: 100%;
-     height: 150px;
-     display: flex;
+     margin-bottom: 20px;
      flex-direction: column;
-     margin-top: 2rem;
 }
 
-#floor-area {
+.input-group label {
+     font-size: 20px;
+     font-weight: 500;
+     color: #333;
+}
+
+.input-group input {
      width: 100%;
-     height: 150px;
-     display: flex;
-     border-top: 1px solid black;
-     /* margin-bottom: 1rem; */
+     border: 1px solid #ccc;
+     border-radius: 5px;
+     font-size: 2rem;
+     color: #333;
+     padding: 1rem 2rem;
+     text-align: center;
 }
 
-.buttons {
-     width: 5%;
-     height: 100px;
+.input-group input:focus {
+     outline: none;
+     border-color: #333;
+}
+
+.input-btn button {
+     width: 100%;
+     border: 1px solid #ccc;
+     border-radius: 5px;
+     font-size: 2rem;
+     padding: 1rem 2rem;
+     color: #333;
+     background-color: #f1f1f1;
+     cursor: pointer;
+}
+
+.input-btn button:hover {
+     background-color: #ccc;
+}
+
+.hide {
+     display: none;
+}
+
+.output-area {
+     width: 100%;
+}
+
+.action-btn {
+     width: 100%;
      display: flex;
      justify-content: center;
      align-items: center;
-     flex-direction: column;
+     position: sticky;
+     top: 0;
+     left: 0;
+
 }
 
-.btn {
-     font-size: 2.2rem;
-     border: none;
-     outline: none;
-     background: transparent;
+.action-btn button {
+     width: auto;
+     border: 1px solid #ccc;
+     border-radius: 5px;
+     font-size: 1rem;
+     padding: .5rem 1rem;
+     color: #333;
+     background-color: #f1f1f1;
      cursor: pointer;
+     margin: 10px;
 }
 
-.btn:hover {
-     transform: scale(1.1);
+.action-btn button:hover {
+     background-color: #ccc;
+}
+
+.building {
+     width: 100%;
+     height: 100%;
+     padding: 10px;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     background-color: aquamarine;
 }
 
 .floor {
+     border-bottom: 1px solid rgb(0, 0, 0);
+     width: 100%;
+     height: 8rem;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     background-color: #f1f1f1;
+}
+
+.lift-buttons {
+     width: auto;
+     height: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: space-between;
+     flex-direction: column;
+}
+
+.lift-buttons button {
+     float: left;
+     border: none;
+     font-size: 2rem;
+     cursor: pointer;
+     margin: 2px 0;
+}
+
+.lift-area {
      width: 100%;
      height: 100%;
      display: flex;
@@ -119,90 +162,41 @@ h1 {
 }
 
 .lift {
-     width: 4rem;
      height: 100%;
-     background-color: brown;
-     margin-left: 2rem;
+     width: 5rem;
+     background-color: #191919;
+     padding: 5px;
      display: flex;
-     justify-content: center;
-     align-items: center;
+     justify-content: space-between;
+     margin: 0 5px;
 }
 
-.gate {
-     width: 100%;
-     height: 90%;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-}
-
-.gate-animate {
-     animation: shutter 5s ease-in;
-}
-
-hr {
-     width: 2px;
+.door-left {
+     width: 49%;
      height: 100%;
+     background-color: #972727;
 }
 
-@keyframes shutter {
+.door-right {
+     width: 49%;
+     height: 100%;
+     background-color: #972727;
+}
+
+.animation {
+     animation: door 2.5s ease-in-out;
+}
+
+@keyframes door {
      0% {
-          width: 0%;
-          background-color: black;
+          width: 49%;
      }
 
      50% {
-          width: 100%;
-          background-color: black;
+          width: 0%;
      }
 
      100% {
-          width: 0%;
-          background-color: black;
+          width: 49%;
      }
-}
-
-.floor-level {
-     width: 8%;
-     height: 100%;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-}
-
-.floor-level p {
-     font-size: 1.5rem;
-}
-
-
-/* Media Query */
-@media screen and (max-width: 1100px) {
-     .output {
-          padding: .5rem;
-     }
-
-     h1 {
-          margin-top: 2rem;
-     }
-
-     .lift {
-          margin-left: 1rem;
-          width: 3rem;
-     }
-
-     .floor-level {
-          width: auto;
-     }
-
-     .floor-level p {
-          font-size: .8rem;
-     }
-}
-
-/* active class for button */
-.active {
-     /* transform: scale(1.2); */
-     background-color: black;
-     border-radius: 10%;
-     transition: all 0.5s ease-in-out;
 }

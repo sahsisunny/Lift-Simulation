@@ -14,43 +14,47 @@
 
 <body>
      <main>
-          <h1>Lift Simulation</h1>
-          <div class="input-form">
-               <form action="">
-                    <div>
-                         <label for="floor">Floor</label>
-                         <input type="number" name="floor" id="floor-input" placeholder="Number of Floor">
-                    </div>
-                    <div>
-                         <label for="lifts">Lifts</label>
-                         <input type="number" name="lifts" id="lift-input" placeholder="Number of Lifts">
-                    </div>
-                    <button id="submit-button">Submit</button>
-               </form>
+          <div class="input-area">
+               <h1>Lift Simulation</h1>
+               <div class="input-group">
+                    <label class="label">Floor Number</label>
+                    <input name="floor" id="floor" type="number">
+               </div>
+               <div class="input-group">
+                    <label class="label">Lift Number</label>
+                    <input name="lift" id="lift" type="number">
+               </div>
+               <div class="input-btn">
+                    <button type="submit" id="submit">SUBMIT </button>
+               </div>
           </div>
-          <div class="output">
+
+          <div class="output-area hide">
+               <div class="action-btn">
+                    <button class="btn" id="back">BACK</button>
+                    <button class="btn" id="reset">RESET</button>
+               </div>
+
+               <div class="building">
+                    <!-- <div class="floor">
+                         <div class="lift-buttons">
+                              <button id="up" class="lift-button">⬆️</button>
+                              <button id="down" class="lift-button">⬇️</button>
+                         </div>
+                         <div class="lift-area">
+                              <div class="lift">
+                                   <div class="lift-door door-left"></div>
+                                   <div class="lift-door door-right"></div>
+                              </div>
+                         </div>
+                    </div> -->
+               </div>
           </div>
+
+
      </main>
+
      <script src="./js/main.js"></script>
 </body>
 
 </html>
-
-
-<!-- <div id="floor-area">
-     <div class="buttons">
-          <button class="btn" id="up">🔼</button>
-          <button class="btn" id="down">🔽</button>
-     </div>
-     <div class="floor">
-          <div class="lift">
-               <div class="gate"></div>
-          </div>
-          <div class="lift">
-               <div class="gate"></div>
-          </div>
-     </div>
-     <div class="floor-level">
-          <p>Level 1</p>
-     </div>
-</div> -->
