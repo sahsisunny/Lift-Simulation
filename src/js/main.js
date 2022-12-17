@@ -21,25 +21,32 @@ let prevLiftPosition = 1;
 
 floorInput.addEventListener('change', (e) => {
      floor = e.target.value;
-     if (floor < 1 || floor > 10) {
-          console.log(`Please enter a valid floor number`);
-          floorInput.value = '';
-          floor = 1;
+     let screenSize = window.innerWidth;
+     if (floor < 0 || floor > 99) {
+          alert(`You have entered ${floor} as your floor. Please enter a number between 1 and 99.`);
+          floorInput.value = '5';
+          floor = 5;
           floorInput.focus();
      }
 });
 
 liftInput.addEventListener('change', (e) => {
-     lift = e.target.value;
-     if (lift < 1 || lift > 10) {
-          console.log(`Please enter a valid lift number`);
-          liftInput.value = '';
+     lift = Number(e.target.value);
+     let screenSize = window.innerWidth;
+     if (lift < 0 || lift > 15) {
+          alert(`You have entered ${lift} as your lift. Please enter a number between 1 and 15. Because you have enough space in your scree.`);
+          floorInput.value = '';
+          lift = 1;
+          liftInput.focus();
+     } else if (screenSize <= 1100 && lift > 5) {
+          alert(`You have entered ${lift} as your lift. Please enter a number between 1 and 5. Because you have not enough space in your screen.`);
+          floorInput.value = '';
           lift = 1;
           liftInput.focus();
      }
-     for (let i = 0; i < lift; i++) {
+     // Add free lift to array
+     for (let i = 0; i < lift; i++)
           freeLift.push(i);
-     }
 });
 
 // function to generate floor
@@ -95,7 +102,7 @@ submitBTN.addEventListener('click', (e) => {
                     e.preventDefault();
                     const floorDiv = e.target.parentNode.parentNode;
                     var [x, requestedFloorNo] = floorDiv.id.split("floor");
-                    for (let i = 0; i < lift; i++) {
+                    for (let i = 0; i < freeLift.length; i++) {
                          const lift = document.getElementById(`lift${freeLift[0]}`);
                          if (lift.dataset.isMoving === "false") {
                               let floorCalled = Math.abs(requestedFloorNo - lift.dataset.currentFloor);
@@ -106,7 +113,6 @@ submitBTN.addEventListener('click', (e) => {
                               lift.style.transform = `translateY(${((requestedFloorNo) * -128)}px)`;
                               lift.style.transition = `transform ${travelDuration}s ease-in-out`;
                               lift.dataset.isMoving = true;
-
 
                               // Lift Gate
                               let lGate = document.getElementsByClassName('door-left')[freeLift[0]];
@@ -124,9 +130,8 @@ submitBTN.addEventListener('click', (e) => {
                               }, `${(travelDuration) * 1000 + 2600}`);
 
                               setTimeout(() => {
-                                   lift.dataset.isMoving = false; // after open + close animations
+                                   lift.dataset.isMoving = false;
                               }, 2500);
-
 
                               freeLift.shift(busyLift.push(freeLift[0]));
                               setTimeout(() => {
@@ -137,13 +142,22 @@ submitBTN.addEventListener('click', (e) => {
                               break;
                          }
                     }
-                    // 
                };
                moveLift(e);
-
-
           });
      }
+});
 
 
+// Back Button Click Handler
+backBTN.addEventListener('click', (e) => {
+     e.preventDefault();
+     inputArea[0].classList.remove('hide');
+     outputArea[0].classList.add('hide');
+});
+
+// Reset Button Click Handler
+resetBTN.addEventListener('click', (e) => {
+     e.preventDefault();
+     location.reload();
 });
