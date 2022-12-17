@@ -38,13 +38,12 @@ liftInput.addEventListener('change', (e) => {
           floorInput.value = '';
           lift = 1;
           liftInput.focus();
-     } else if (screenSize <= 1100 && lift > 5) {
-          alert(`You have entered ${lift} as your lift. Please enter a number between 1 and 5. Because you have not enough space in your screen.`);
+     } else if (screenSize <= 1100 && lift > 4) {
+          alert(`You have entered ${lift} as your lift. Please enter a number between 1 and 4. Because you have not enough space in your scree.`);
           floorInput.value = '';
           lift = 1;
           liftInput.focus();
      }
-     // Add free lift to array
      for (let i = 0; i < lift; i++)
           freeLift.push(i);
 });
@@ -113,6 +112,8 @@ submitBTN.addEventListener('click', (e) => {
                               lift.style.transform = `translateY(${((requestedFloorNo) * -128)}px)`;
                               lift.style.transition = `transform ${travelDuration}s ease-in-out`;
                               lift.dataset.isMoving = true;
+                              e.target.classList.add('active-btn');
+
 
                               // Lift Gate
                               let lGate = document.getElementsByClassName('door-left')[freeLift[0]];
@@ -126,6 +127,8 @@ submitBTN.addEventListener('click', (e) => {
                               setTimeout(() => {
                                    lGate.classList.remove("animation");
                                    rGate.classList.remove("animation");
+                                   // remove class name from button
+                                   e.target.classList.remove('active-btn');
                                    console.log("Door close");
                               }, `${(travelDuration) * 1000 + 2600}`);
 

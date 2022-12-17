@@ -4,8 +4,6 @@
      box-sizing: border-box;
 }
 
-
-
 main {
      width: 100%;
      display: flex;
@@ -199,3 +197,7 @@ h1 {
      }
 }
 
+.active-btn {
+     filter: invert(1);
+     border-radius: 10%;
+}
