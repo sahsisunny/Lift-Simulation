@@ -17,7 +17,6 @@ let floor = 0;
 let lift = 0;
 let freeLift = [];
 let busyLift = [];
-let prevLiftPosition = 1;
 
 floorInput.addEventListener('change', (e) => {
      floor = e.target.value;
@@ -151,7 +150,6 @@ submitBTN.addEventListener('click', (e) => {
      }
 });
 
-
 // Back Button Click Handler
 backBTN.addEventListener('click', (e) => {
      e.preventDefault();
@@ -162,5 +160,28 @@ backBTN.addEventListener('click', (e) => {
 // Reset Button Click Handler
 resetBTN.addEventListener('click', (e) => {
      e.preventDefault();
-     location.reload();
+
+     // close door of all lift
+     const lGate = document.getElementsByClassName('door-left');
+     const rGate = document.getElementsByClassName('door-right');
+     for (let i = 0; i < lGate.length; i++) {
+          lGate[i].classList.remove("animation");
+          rGate[i].classList.remove("animation");
+     }
+     // set all lift to 0 floor
+     for (let i = 0; i < lift; i++) {
+          document.getElementById(`lift${i}`).style.transform = `translateY(0px)`;
+          document.getElementById(`lift${i}`).setAttribute("data-current-floor", 0);
+     }
+     // set all button to inactive
+     const moveBTN = document.getElementsByClassName('move');
+     for (let i = 0; i < moveBTN.length; i++) {
+          moveBTN[i].classList.remove('active-btn');
+     }
+     // set all lift to free
+     freeLift = [];
+     busyLift = [];
+     for (let i = 0; i < lift; i++) {
+          freeLift.push(i);
+     }
 });
