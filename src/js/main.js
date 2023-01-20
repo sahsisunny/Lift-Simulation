@@ -1,9 +1,10 @@
-// Input
+'use strict'
+// Selecting input and button elements 
 const floorInput = document.getElementById('floor');
 const liftInput = document.getElementById('lift');
 const submitBTN = document.getElementById('submit');
 
-// area
+// Selecting areas
 const inputArea = document.getElementsByClassName('input-area');
 const outputArea = document.getElementsByClassName('output-area');
 const liftArea = document.getElementsByClassName('building');
@@ -16,17 +17,17 @@ let floor = 0;
 let lift = 0;
 let freeLift = [];
 let busyLift = [];
-let liftQueue = [];
 
-
+// Function to handle floor input change
 function handleFloorInputChange(e) {
      floor = e.target.value;
      if (floor < 0 || floor > 99) {
           alert(`You have entered ${floor} as your floor. Please enter a number between 1 and 99.`);
           floorInput.focus();
      }
-}
+};
 
+// function to handle lift input change
 function handleLiftInputChange(e) {
      lift = Number(e.target.value);
      let screenSize = window.innerWidth;
@@ -39,7 +40,7 @@ function handleLiftInputChange(e) {
      }
      for (let i = 0; i < lift; i++)
           freeLift.push(i);
-}
+};
 
 // function to generate floor
 function generateBuilding() {
@@ -67,7 +68,7 @@ function generateBuilding() {
                `;
      }
      liftArea[0].innerHTML = floorHTML;
-}
+};
 
 // function to generate lift
 function generateLift(numOfLifts) {
@@ -80,7 +81,7 @@ function generateLift(numOfLifts) {
           </div>`;
      }
      return liftElements;
-}
+};
 
 // Submit Click handler
 submitBTN.addEventListener('click', (e) => {
@@ -91,24 +92,17 @@ submitBTN.addEventListener('click', (e) => {
      addMoveEventListener();
 });
 
-// Function to store lift button click
-function storeLiftButtonClick(e) {
-     e.preventDefault();
-     let [x, requestedFloorNo] = e.target.dataset.btnFloor.split("floor");
-     liftQueue.push(requestedFloorNo);
-     console.log(liftQueue);
-}
-
-
 // Function to add event listener to move button
 const addMoveEventListener = () => {
      const moveBTN = document.getElementsByClassName('move');
+     console.log(`Total move button: ${moveBTN.length}`);
      for (let i = 0; i < moveBTN.length; i++) {
           moveBTN[i].addEventListener('click', moveLift);
      }
-}
+};
 
-const moveLift = (e) => {
+// Function to move lift
+function moveLift(e) {
      e.preventDefault();
      const floorDiv = e.target.parentNode.parentNode;                                     // target floor div from move button
      var [x, requestedFloorNo] = floorDiv.id.split("floor");                              // get floor number from floor div id
@@ -157,13 +151,11 @@ const moveLift = (e) => {
      }
 };
 
-
-
 // Back Button Click Handler
 function showInputArea(e) {
      e.preventDefault();
      window.location.reload();
-}
+};
 
 backBTN.addEventListener('click', showInputArea);
 
