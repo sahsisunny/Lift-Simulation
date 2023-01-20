@@ -23,8 +23,6 @@ function handleFloorInputChange(e) {
      floor = e.target.value;
      if (floor < 0 || floor > 99) {
           alert(`You have entered ${floor} as your floor. Please enter a number between 1 and 99.`);
-          floorInput.value = '5';
-          floor = 5;
           floorInput.focus();
      }
 }
@@ -33,14 +31,10 @@ function handleLiftInputChange(e) {
      lift = Number(e.target.value);
      let screenSize = window.innerWidth;
      if (lift < 0 || lift > 15) {
-          alert(`You have entered ${lift} as your lift. Please enter a number between 1 and 15. Because you have enough space in your scree.`);
-          floorInput.value = '5';
-          lift = 5;
+          alert(`You have entered ${lift} as your lift. Please enter a number between 1 and 15. Because you have enough space in your screen.`);
           liftInput.focus();
      } else if (screenSize <= 1100 && lift > 4) {
-          alert(`You have entered ${lift} as your lift. Please enter a number between 1 and 4. Because you have not enough space in your scree.`);
-          floorInput.value = '4';
-          lift = 4;
+          alert(`You have entered ${lift} as your lift. Please enter a number between 1 and 4. Because you have not enough space in your screen.`);
           liftInput.focus();
      }
      for (let i = 0; i < lift; i++)
