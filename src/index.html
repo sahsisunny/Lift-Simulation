@@ -1,56 +1,45 @@
-<!-- Developer Details -->
-<!-- Name: Sunny Sahsi -->
-<!-- Github:https://github.com/sunnysahsi -->
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
      <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="./css/main.css">
-     <title>Lift-Simulation</title>
+     <title>Lift Simulation</title>
+     <link rel="stylesheet" href="/src/css/login.css">
 </head>
 
 <body>
-     <main>
-          <div class="input-area">
-               <h1>Lift Simulation</h1>
-               <div class="input-group">
-                    <label class="label">Floor Number</label>
-                    <input name="floor" id="floor" type="number">
-               </div>
-               <div class="input-group">
-                    <label class="label">Lift Number</label>
-                    <input name="lift" id="lift" type="number">
-               </div>
-               <div class="input-btn">
-                    <button type="submit" id="submit">SUBMIT </button>
-               </div>
-          </div>
 
-          <div class="output-area hide">
-               <div class="action-btn">
-                    <button class="btn" id="back">👈 BACK</button>
-               </div>
-
-               <div class="building">
-                    <!-- <div class="floor">
-                         <div class="lift-buttons">
-                              <button id="up" class="lift-button">⬆️</button>
-                              <button id="down" class="lift-button">⬇️</button>
-                         </div>
-                         <div class="lift-area">
-                              <div class="lift">
-                                   <div class="lift-door door-left"></div>
-                                   <div class="lift-door door-right"></div>
-                              </div>
-                         </div>
-                    </div> -->
-               </div>
-          </div>
+     <div class="header ">
+          <h1>Lift Simulation</h1>
+          <p>Welcome to the Lift Simulation. Please select a mode to start.</p>
+     </div>
+     <main class="btn-section ">
+          <button id="multiplayer-btn" href="" class="start-btn btn-yellow">Multiplayer</button>
+          <a id="singleplayer-btn" href="./singleplayer.html" class="start-btn btn-blue">Singleplayer</a>
      </main>
-     <script src="./js/main.js"></script>
+     <div class="floating-box hide">
+          <h1>Create or Join a Room</h1>
+          <div class="button-section">
+               <button class="btn-floating">Create Room</button>
+               <button class="btn-floating">Join Room</button>
+          </div>
+          <p>
+               <strong>Note:</strong>If you are creating a room, you will be given a room code. Share this code with
+               your friends and they can
+               join the room using this code.
+          </p>
+          <span class="close-button" id="close-btn">x</span>
+     </div>
+     <footer class="footer">
+          <p><strong>Note:</strong> In multiplayer mode, you will be given a room code. Share this code with your
+               friends and they can join the room using this code.</p>
+          <br>
+          <p>Made with ❤️ by <a href="https://twitter.com/sahsisunny" target="_blank">Sunny Sahsi</a></p>
+     </footer>
+
+     <script src="/src/js/login.js"></script>
 </body>
 
 </html>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap');
+
 :root {
      --color-white: white;
      --color-black: black;
@@ -7,6 +9,7 @@
      margin: 0;
      padding: 0;
      box-sizing: border-box;
+     font-family: 'Josefin Sans', sans-serif;
 }
 
 body::before {
@@ -21,7 +24,7 @@ body::before {
      background-position: center;
      background-repeat: no-repeat;
      z-index: -1;
-     filter: blur(2px);
+     /* filter: blur(2px); */
 }
 
 main {
@@ -30,7 +33,6 @@ main {
      justify-content: center;
      align-items: center;
      flex-direction: column;
-     font-family: 'Roboto', sans-serif;
 }
 
 h1 {
@@ -38,10 +40,11 @@ h1 {
      font-weight: 800;
      color: var(--color-black);
      margin-bottom: 20px;
-     font-family: 'Roboto', sans-serif;
+     text-align: center;
 }
 
 .input-area {
+     margin-top: 6rem;;
      width: 100%;
      max-width: 500px;
      max-height: 500px;
@@ -63,22 +66,24 @@ h1 {
 }
 
 .input-group label {
-     font-size: 20px;
+     font-size: 1.5rem;
      font-weight: 500;
-     color: var(--color-text);
 }
 
 .input-group input {
      width: 100%;
      border-radius: 5px;
      font-size: 2rem;
-     color: var(--color-text);
      padding: 1rem 2rem;
      text-align: center;
      background: transparent;
      outline: none;
-     border: none;
-     box-shadow: 0 2px 5px rgb(255, 255, 255);
+     border: none;    
+     box-shadow: 0 2px 5px rgb(0, 0, 0);
+}
+
+.input-group input::placeholder {
+     font-size: 1.5rem;
 }
 
 .input-group input:focus {
@@ -88,14 +93,13 @@ h1 {
 
 .input-btn button {
      width: 100%;
-     border: 1px solid #ccc;
+     border:none;;
      border-radius: 5px;
      font-size: 1.5rem;
      padding: 1rem 2rem;
-     color: var(--color-text);
      cursor: pointer;
      background: transparent;
-     box-shadow: 0 2px 5px rgb(255, 255, 255);
+     box-shadow: 0 2px 5px rgb(0, 0, 0);
 
 }
 
@@ -114,7 +118,10 @@ h1 {
 
 .action-btn {
      width: 100%;
-     position: relative;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     position: sticky;
      top: 0;
      left: 0;
 
