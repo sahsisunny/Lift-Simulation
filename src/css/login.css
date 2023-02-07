@@ -159,6 +159,16 @@ a {
      color: rgb(10, 10, 10);
 }
 
+.room-code-input{
+     width: 100%;
+     padding: 10px;
+     font-size: 1rem;
+     margin: 4px;
+     border-radius: 10px;
+     border: 1px solid grey;
+     text-align: center;
+}
+
 .hide {
      display: none;
 }

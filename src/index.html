@@ -9,7 +9,6 @@
 </head>
 
 <body>
-
      <div class="header ">
           <h1>Lift Simulation</h1>
           <p>Welcome to the Lift Simulation. Please select a mode to start.</p>
@@ -21,8 +20,8 @@
      <div class="floating-box hide">
           <h1>Create or Join a Room</h1>
           <div class="button-section">
-               <button class="btn-floating">Create Room</button>
-               <button class="btn-floating">Join Room</button>
+               <button class="btn-floating" id="create-room-btn">Create Room Code</button>
+               <button class="btn-floating" id="have-room-code-btn">Have a Room Code?</button>
           </div>
           <p>
                <strong>Note:</strong>If you are creating a room, you will be given a room code. Share this code with
@@ -31,6 +30,34 @@
           </p>
           <span class="close-button" id="close-btn">x</span>
      </div>
+
+     <div class="floating-box create-room hide">
+          <h1>Create a Room</h1>
+          <div class="button-section">
+               <input type="text" placeholder="Room Code" class="room-code-input" id="copy-room-code-input"
+                    value="room-id"
+                    readonly>
+               <button class="btn-floating" id="copy-room-code-btn">Copy Room Code</button>
+          </div>
+          <p>
+               <strong>Note:</strong> Copied the room code? Share this code with your friends and they can join the room using this code.
+          </p>
+          <span class="close-button" id="close-btn">x</span>
+     </div>
+     <div class="floating-box join-room hide">
+          <h1>Join a Room</h1>
+          <div class="button-section">
+               <input type="text" placeholder="Enter Room Code" class="room-code-input" id="room-code-input">
+               <button class="btn-floating" id="join-room-btn">Join Room</button>
+          </div>
+          <p>
+               <strong>Note:</strong>If you have a room code, enter it in the box above and click on the join room
+               button. else, go back and create a room.
+          </p>
+          <span class="close-button" id="close-btn">x</span>
+     </div>
+
+
      <footer class="footer">
           <p><strong>Note:</strong> In multiplayer mode, you will be given a room code. Share this code with your
                friends and they can join the room using this code.</p>
