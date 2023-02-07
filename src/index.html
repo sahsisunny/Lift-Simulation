@@ -33,14 +33,16 @@
 
      <div class="floating-box create-room hide">
           <h1>Create a Room</h1>
+          <input type="text" placeholder="Room Code" class="room-code-input" id="copy-room-code-input" value="room-id"
+               readonly>
           <div class="button-section">
-               <input type="text" placeholder="Room Code" class="room-code-input" id="copy-room-code-input"
-                    value="room-id"
-                    readonly>
                <button class="btn-floating" id="copy-room-code-btn">Copy Room Code</button>
+               <!-- go live -->
+               <button class="btn-floating" id="go-live-btn">Go Live</button>
           </div>
           <p>
-               <strong>Note:</strong> Copied the room code? Share this code with your friends and they can join the room using this code.
+               <strong>Note:</strong> Copied the room code? Share this code with your friends and they can join the room
+               using this code.
           </p>
           <span class="close-button" id="close-btn">x</span>
      </div>

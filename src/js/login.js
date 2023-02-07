@@ -52,6 +52,7 @@ function createRoom(e) {
      e.preventDefault();
      console.log('create room');
      createRoomBox[0].classList.remove('hide');
+     floatingBoxRooms[0].classList.add('hide');
 }
 
 function copyRoomCode(e) {
