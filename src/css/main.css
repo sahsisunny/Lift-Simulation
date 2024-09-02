@@ -1,283 +1,276 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap");
 
 :root {
-     --color-white: white;
-     --color-black: black;
+  --color-white: white;
+  --color-black: black;
 }
 
 * {
-     margin: 0;
-     padding: 0;
-     box-sizing: border-box;
-     font-family: 'Josefin Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Josefin Sans", sans-serif;
 }
 
 body::before {
-     content: "";
-     position: fixed;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     background-image: url(../assets/background.png);
-     background-size: cover;
-     background-position: center;
-     background-repeat: no-repeat;
-     z-index: -1;
-     /* filter: blur(2px); */
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(../assets/background.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  /* filter: blur(2px); */
 }
 
 main {
-     width: 100%;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     flex-direction: column;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 /* Floating Box */
 .floating-box {
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     flex-direction: column;
-     z-index: 1;
-     /* box-shadow: 0 2px 20px black; */
-     position: fixed;
-     top: 50%;
-     left: 50%;
-     transform: translate(-50%, -50%);
-     border-radius: 6px;
-     padding: 20px;
-     background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1;
+  /* box-shadow: 0 2px 20px black; */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 6px;
+  padding: 20px;
+  background-color: transparent;
 }
 
-
-
 .floating-box p {
-     font-size: 1rem;
-     text-decoration: none;
-     margin: 1rem;
-     text-align: justify;
+  font-size: 1rem;
+  text-decoration: none;
+  margin: 1rem;
+  text-align: justify;
 }
 
 .button-section {
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .btn-floating {
-     border: none;
-     color: white;
-     padding: 10px;
-     font-size: 1rem;
-     margin: 4px;
-     cursor: pointer;
-     border-radius: 10px;
-     background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px;
+  font-size: 1rem;
+  margin: 4px;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: #4caf50;
 }
 
 h1 {
-     font-size: 3rem;
-     font-weight: 800;
-     color: var(--color-black);
-     margin-bottom: 20px;
-     text-align: center;
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--color-black);
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .input-area {
-     width: 100%;
-     max-width: 500px;
-     max-height: 500px;
-     border-radius: 10px;
-     padding: 20px;
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
+  width: 100%;
+  max-width: 500px;
+  max-height: 500px;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .input-group {
-     width: 100%;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     margin-bottom: 20px;
-     flex-direction: column;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-direction: column;
 }
 
 .input-group label {
-     font-size: 1.5rem;
-     font-weight: 500;
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 
 .input-group input {
-     width: 80%;
-     border-radius: 5px;
-     font-size: 2rem;
-     padding: 1rem 2rem;
-     text-align: center;
-     background: transparent;
-     outline: none;
-     border: none;    
-     box-shadow: 0 2px 5px rgb(0, 0, 0);
+  width: 80%;
+  border-radius: 5px;
+  font-size: 2rem;
+  padding: 1rem 2rem;
+  text-align: center;
+  background: transparent;
+  outline: none;
+  border: none;
+  box-shadow: 0 2px 5px rgb(0, 0, 0);
 }
 
 .input-group input::placeholder {
-     font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .input-group input:focus {
-     outline: none;
-     border-color: #333;
+  outline: none;
+  border-color: #333;
 }
 
 .input-btn button {
-     width: 100%;
-     border:none;;
-     border-radius: 5px;
-     font-size: 1.5rem;
-     padding: 1rem 2rem;
-     cursor: pointer;
-     background: transparent;
-     box-shadow: 0 2px 5px rgb(0, 0, 0);
-     text-transform: capitalize;
-
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  background: transparent;
+  box-shadow: 0 2px 5px rgb(0, 0, 0);
+  text-transform: capitalize;
 }
 
 .input-btn button:hover {
-     transform: scale(1.1);
-     transition: all .2s ease-in-out;
-
+  transform: scale(1.1);
+  transition: all 0.2s ease-in-out;
 }
 
 .hide {
-     display: none;
+  display: none;
 }
 
 .output-area {
-     width: 100%;
+  width: 100%;
 }
 
 .action-btn {
-     width: 100%;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     position: sticky;
-     top: 0;
-     left: 0;
-
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
 }
 
 .action-btn button {
-     width: auto;
-     border: 1px solid #ccc;
-     border-radius: 5px;
-     font-size: 1rem;
-     padding: .5rem 1rem;
-     color: #333;
-     background-color: #f1f1f1;
-     cursor: pointer;
-     margin: 10px;
+  width: auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  color: #333;
+  background-color: #f1f1f1;
+  cursor: pointer;
+  margin: 10px;
 }
 
 .action-btn button:hover {
-     background-color: #ccc;
+  background-color: #ccc;
 }
 
 .building {
-     width: 100%;
-     height: 100%;
-     padding: 10px;
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
-     /* background-color: aquamarine; */
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: aquamarine; */
 }
 
 .floor {
-     /* border-bottom: 5px solid rgb(0, 0, 0); */
-     width: 100%;
-     height: 8rem;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     background-color: transparent;
-     box-shadow: 0 5px 5px rgb(255, 255, 255);
+  /* border-bottom: 5px solid rgb(0, 0, 0); */
+  width: 100%;
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  box-shadow: 0 5px 5px rgb(255, 255, 255);
 }
 
 .lift-buttons {
-     width: auto;
-     height: 100%;
-     display: flex;
-     justify-content: center;
-     align-items: space-between;
-     flex-direction: column;
+  width: auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: space-between;
+  flex-direction: column;
 }
 
 .lift-buttons button {
-     float: left;
-     border: none;
-     font-size: 2rem;
-     cursor: pointer;
-     margin: 2px 0;
+  float: left;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  margin: 2px 0;
 }
 
 .lift-area {
-     width: 100%;
-     height: 100%;
-     display: flex;
-     justify-content: flex-start;
-     align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .lift {
-     height: 100%;
-     width: 5rem;
-     background-color: #191919;
-     padding: 5px;
-     display: flex;
-     justify-content: space-between;
-     margin: 0 5px;
+  height: 100%;
+  width: 5rem;
+  background-color: #191919;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 5px;
 }
 
 .door-left {
-     width: 49%;
-     height: 100%;
-     background: linear-gradient(to bottom, #bcc6cc, #eee, #bcc6cc);
+  width: 49%;
+  height: 100%;
+  background: linear-gradient(to bottom, #bcc6cc, #eee, #bcc6cc);
 }
 
 .door-right {
-     width: 49%;
-     height: 100%;
-     background: linear-gradient(to bottom, #bcc6cc, #eee, #bcc6cc);
+  width: 49%;
+  height: 100%;
+  background: linear-gradient(to bottom, #bcc6cc, #eee, #bcc6cc);
 }
 
 .animation {
-     animation: door 2.5s ease-in-out;
+  animation: door 2.5s ease-in-out;
 }
 
 @keyframes door {
-     0% {
-          width: 49%;
-     }
+  0% {
+    width: 49%;
+  }
 
-     50% {
-          width: 0%;
-     }
+  50% {
+    width: 0%;
+  }
 
-     100% {
-          width: 49%;
-     }
+  100% {
+    width: 49%;
+  }
 }
-
 
 .active-btn {
-     filter: invert(1);
-     border-radius: 10%;
+  filter: invert(1);
+  border-radius: 10%;
 }
-

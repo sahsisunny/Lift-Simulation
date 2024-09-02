@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multiplayer Lift Simulation</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Multiplayer Lift Simulation</h1>
+      <div id="room-info">
+        <h2>Room: <span id="room-id"></span></h2>
+      </div>
+      <div class="input-area">
+        <div class="input-group">
+          <label for="floor">Floor Number:</label>
+          <input type="number" id="floor" min="1" max="99" />
+        </div>
+        <div class="input-group">
+          <label for="lift">Lift Number:</label>
+          <input type="number" id="lift" min="1" max="15" />
+        </div>
+        <button id="submit">Start Simulation</button>
+      </div>
+      <div class="output-area hide">
+        <button id="back" class="action-btn">👈 BACK</button>
+        <div class="building"></div>
+      </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./js/multiplayer.js"></script>
+  </body>
+</html>

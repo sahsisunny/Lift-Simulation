@@ -2,41 +2,51 @@
 <!-- Name: Sunny Sahsi -->
 <!-- Github:https://github.com/sunnysahsi -->
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <title>Lift-Simulation</title>
+  </head>
 
-<head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="./css/main.css">
-     <title>Lift-Simulation</title>
+  <body>
+    <main>
+      <div class="floating-box input-area">
+        <h1>Lift Simulation</h1>
+        <div class="input-group">
+          <label class="label">Floor Number</label>
+          <input
+            name="floor"
+            id="floor"
+            type="number"
+            placeholder="Enter Floor Number"
+            required
+          />
+        </div>
+        <div class="input-group">
+          <label class="label">Lift Number</label>
+          <input
+            name="lift"
+            id="lift"
+            type="number"
+            placeholder="Enter Lift Number"
+            required
+          />
+        </div>
+        <div class="input-btn">
+          <button type="submit" id="submit">Submit</button>
+        </div>
+      </div>
 
-</head>
+      <div class="output-area hide">
+        <div class="action-btn">
+          <button class="btn" id="back">👈 BACK</button>
+        </div>
 
-<body>
-     <main>
-          <div class="floating-box input-area">
-               <h1>Lift Simulation</h1>
-               <div class="input-group">
-                    <label class="label">Floor Number</label>
-                    <input name="floor" id="floor" type="number" placeholder="Enter Floor Number" required>
-               </div>
-               <div class="input-group">
-                    <label class="label">Lift Number</label>
-                    <input name="lift" id="lift" type="number" placeholder="Enter Lift Number" required>
-               </div>
-               <div class="input-btn">
-                    <button type="submit" id="submit">Submit </button>
-               </div>
-          </div>
-
-          <div class="output-area hide">
-               <div class="action-btn">
-                    <button class="btn" id="back">👈 BACK</button>
-               </div>
-
-               <div class="building">
-                    <!-- <div class="floor">
+        <div class="building">
+          <!-- <div class="floor">
                          <div class="lift-buttons">
                               <button id="up" class="lift-button">⬆️</button>
                               <button id="down" class="lift-button">⬇️</button>
@@ -48,10 +58,10 @@
                               </div>
                          </div>
                     </div> -->
-               </div>
-          </div>
-     </main>
-     <script src="./js/main.js"></script>
-</body>
-
+        </div>
+      </div>
+    </main>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./js/singleplayer.js"></script>
+  </body>
 </html>

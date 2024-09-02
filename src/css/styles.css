@@ -1,0 +1,348 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.container {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  /* max-width: 600px; */
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h1,
+h2 {
+  color: #333;
+}
+
+.btn-section {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.start-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.btn-blue {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-blue:hover {
+  background-color: #2980b9;
+}
+
+.floating-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.button-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.hide {
+  display: none;
+}
+
+.blur {
+  filter: blur(5px);
+}
+
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation:
+    fadein 0.5s,
+    fadeout 0.5s 2.5s;
+  animation:
+    fadein 0.5s,
+    fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+/* Styles for the lift simulation */
+
+.building {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: aquamarine; */
+}
+
+.floor {
+  /* border-bottom: 5px solid rgb(0, 0, 0); */
+  width: 100%;
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  box-shadow: 0 5px 5px rgb(255, 255, 255);
+}
+
+.lift-buttons {
+  width: auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: space-between;
+  flex-direction: column;
+}
+
+.lift-button {
+  float: left;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  margin: 2px 0;
+}
+
+.lift-area {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.lift {
+  height: 100%;
+  width: 5rem;
+  background-color: #191919;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 5px;
+}
+
+.door-left {
+  width: 49%;
+  height: 100%;
+  background: linear-gradient(to bottom, #bcc6cc, #eee, #bcc6cc);
+}
+
+.door-right {
+  width: 49%;
+  height: 100%;
+  background: linear-gradient(to bottom, #bcc6cc, #eee, #bcc6cc);
+}
+
+.animation {
+  animation: door 2.5s ease-in-out;
+}
+
+@keyframes door {
+  0% {
+    width: 49%;
+  }
+
+  50% {
+    width: 0%;
+  }
+
+  100% {
+    width: 49%;
+  }
+}
+
+.button-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-floating {
+  border: none;
+  color: white;
+  padding: 10px;
+  font-size: 1rem;
+  margin: 4px;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: #4caf50;
+}
+
+.btn-floating:hover {
+  background-color: #3e8e41;
+}
+
+.room-code-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  margin: 4px;
+  border-radius: 10px;
+  border: 1px solid grey;
+  text-align: center;
+}
+
+.input-area {
+  width: 100%;
+  max-width: 500px;
+  max-height: 500px;
+  margin: 0 auto;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-group {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-direction: column;
+}
+
+.input-group label {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.input-group input::placeholder {
+  font-size: 1.5rem;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #333;
+}
+
+.input-area button {
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.input-btn button:hover {
+  transform: scale(1.1);
+  transition: all 0.2s ease-in-out;
+}
